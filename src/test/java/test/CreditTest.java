@@ -29,66 +29,73 @@ public class CreditTest {
     }
 
     @Test
-    void shouldPayByApprovedCard(){
+    void shouldPayByApprovedCard() {
         var approvedCard = DataHelper.validApprovedCard();
         payPage.login(approvedCard);
         payPage.payErrorNotificationHidden();
         payPage.payNotification("Успешно\n" +
                 "Операция одобрена Банком.");
         var payStatus = SQLHelper.getCreditStatusEntity();
-        assertEquals ("APPROVED", payStatus.getStatus());
+        assertEquals("APPROVED", payStatus.getStatus());
     }
+
     @Test
-    void shouldntPayByDECLINEDCard(){
+    void shouldntPayByDECLINEDCard() {
         var declinedCard = DataHelper.validDeclinedCard();
         payPage.login(declinedCard);
         payPage.payNotificationHidden();
         payPage.payErrorNotification("Ошибка\n" +
                 "Ошибка! Банк отказал в проведении операции.");
         var payStatus = SQLHelper.getCreditStatusEntity();
-        assertEquals ("DECLINED", payStatus.getStatus());
+        assertEquals("DECLINED", payStatus.getStatus());
     }
 
     @Test
-    void shouldntPayByInvalidCard(){
+    void shouldntPayByInvalidCard() {
         var invalidCard = DataHelper.invalidCard();
         payPage.login(invalidCard);
         payPage.checkInputSubCard();
     }
+
     @Test
-    void shouldntPayByInvalidFormCard(){
+    void shouldntPayByInvalidFormCard() {
         var invalidFormCard = DataHelper.invalidFormCard();
         payPage.login(invalidFormCard);
         payPage.checkCard("Неверный формат");
     }
+
     @Test
-    void shouldntPayByExpiredMonthCard(){
+    void shouldntPayByExpiredMonthCard() {
         var expiredMonth = DataHelper.expiredMonth();
         payPage.login(expiredMonth);
         payPage.checkMonth("Истёк срок действия карты");
     }
+
     @Test
-    void shouldntPayByInvalidMonthCard(){
+    void shouldntPayByInvalidMonthCard() {
         var invalidMonth = DataHelper.invalidMonth();
         payPage.login(invalidMonth);
         payPage.checkMonth("Неверно указан срок действия карты\n" +
                 " \t ");
     }
+
     @Test
-    void shouldntPayByInvalidFormMonthCard(){
+    void shouldntPayByInvalidFormMonthCard() {
         var invalidFormMonth = DataHelper.invalidFormMonth();
         payPage.login(invalidFormMonth);
         payPage.checkMonth("Неверный формат");
     }
+
     @Test
-    void shouldntPayByZeroMonthCard(){
+    void shouldntPayByZeroMonthCard() {
         var zeroMonth = DataHelper.zeroMonth();
         payPage.login(zeroMonth);
         payPage.checkMonth("Неверно указан срок действия карты\n" +
                 " \t ");
     }
+
     @Test
-    void shouldntPayByExpiredYearCard(){
+    void shouldntPayByExpiredYearCard() {
         var expiredYear = DataHelper.expiredYear();
         payPage.login(expiredYear);
         payPage.checkYear("Истёк срок действия карты" +
@@ -96,7 +103,7 @@ public class CreditTest {
     }
 
     @Test
-    void shouldntPayByInvalidYearCard(){
+    void shouldntPayByInvalidYearCard() {
         var invalidYear = DataHelper.invalidYear();
         payPage.login(invalidYear);
         payPage.checkYear("Неверно указан срок действия карты\n" +
@@ -104,31 +111,35 @@ public class CreditTest {
     }
 
     @Test
-    void shouldntPayByInvalidUserCard(){
+    void shouldntPayByInvalidUserCard() {
         var invalidUser = DataHelper.invalidUser();
         payPage.login(invalidUser);
         payPage.checkOwner("Неверный формат");
     }
+
     @Test
-    void shouldntPayByInvalidRusUserCard(){
+    void shouldntPayByInvalidRusUserCard() {
         var invalidRusUser = DataHelper.invalidRusUser();
         payPage.login(invalidRusUser);
         payPage.checkOwner("Поле заполняется латинскими буквами");
     }
+
     @Test
-    void shouldntPayByInvalidNumbUserCard(){
+    void shouldntPayByInvalidNumbUserCard() {
         var numberUser = DataHelper.numberUser();
         payPage.login(numberUser);
         payPage.checkOwner("Неверный формат");
     }
+
     @Test
-    void shouldntPayByInvalidSignUserCard(){
+    void shouldntPayByInvalidSignUserCard() {
         var signUser = DataHelper.signUser();
         payPage.login(signUser);
         payPage.checkOwner("Неверный формат");
     }
+
     @Test
-    void shouldntPayByInvalidFormCVCCard(){
+    void shouldntPayByInvalidFormCVCCard() {
         var notFormCVC = DataHelper.notFormCVC();
         payPage.login(notFormCVC);
         payPage.checkCVC("Неверный формат");

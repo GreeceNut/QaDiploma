@@ -90,6 +90,7 @@ public class DataHelper {
     public static class Status {
         String status;
     }
+
     @Value
     public static class CardInfo {
         String cardNumber;
