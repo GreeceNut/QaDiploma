@@ -1,4 +1,4 @@
-package data;
+package Data;
 
 import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;

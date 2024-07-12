@@ -1,13 +1,13 @@
-package test;
+package Tests;
 
 import Pages.DashboardPage;
 import Pages.PayPage;
-import data.DataHelper;
-import data.SQLHelper;
+import Data.DataHelper;
+import Data.SQLHelper;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.open;
-import static data.SQLHelper.*;
+import static Data.SQLHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentTest {

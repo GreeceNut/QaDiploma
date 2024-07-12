@@ -43,3 +43,4 @@ bin/
 
 qa-diploma
 gate-simulator/node_modules
+.idea

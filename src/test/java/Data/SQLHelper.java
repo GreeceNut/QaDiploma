@@ -1,4 +1,4 @@
-package data;
+package Data;
 
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
@@ -16,8 +16,11 @@ public class SQLHelper {
     }
 
     private static Connection getConn() throws SQLException {
+        String url = System.getProperty("db.url");
+        String name = System.getProperty("username");
+        String pass = System.getProperty("password");
         return DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
+                .getConnection(url, name, pass);
     }
 
     @SneakyThrows

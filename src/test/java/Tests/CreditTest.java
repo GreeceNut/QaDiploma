@@ -1,15 +1,15 @@
-package test;
+package Tests;
 
 import Pages.DashboardPage;
 import Pages.PayPage;
-import data.DataHelper;
-import data.SQLHelper;
+import Data.DataHelper;
+import Data.SQLHelper;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static data.SQLHelper.cleanDatabase;
+import static Data.SQLHelper.cleanDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditTest {

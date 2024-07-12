@@ -2,8 +2,7 @@ package Pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.ExactText;
-import data.DataHelper;
+import Data.DataHelper;
 
 import java.time.Duration;
 
@@ -16,8 +15,6 @@ public class PayPage {
                     text("Оплата по карте"),
                     text("Кредит по данным карты")));
 
-    //    private final SelenideElement headerCredit = $$("h3")
-//            .find(text("Кредит по данным карты"));
     private ElementsCollection input = $$(".input__control");
     private SelenideElement continueButton = $$(".button")
             .find(exactText(" Продолжить"));
@@ -43,14 +40,6 @@ public class PayPage {
         header.shouldBe(visible);
     }
 
-//    public void login(DataHelper.CardInfo cardInfo) {
-//        input.find(exactText("Номер карты")).setValue(cardInfo.getCardNumber());
-//        input.find(exactText("Месяц")).setValue(cardInfo.getMonth());
-//        input.find(exactText("Год")).setValue(cardInfo.getYear());
-//        input.find(exactText("Владелец")).setValue(cardInfo.getOwner());
-//        input.find(exactText("CVC/CVV")).setValue(cardInfo.getCVC());
-//        continueButton.click();
-//    }
 
     public void login(DataHelper.CardInfo cardInfo) {
         input.get(0).setValue(cardInfo.getCardNumber());

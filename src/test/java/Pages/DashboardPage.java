@@ -1,6 +1,5 @@
 package Pages;
 
-import Pays.CreditCard;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
