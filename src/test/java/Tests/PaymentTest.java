@@ -3,17 +3,14 @@ package test;
 import Pages.DashboardPage;
 import Pages.PayPage;
 import data.DataHelper;
-import data.PaymentStatus;
 import data.SQLHelper;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.open;
-import static data.SQLHelper.cleanDatabase;
+import static data.SQLHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreditTest {
+public class PaymentTest {
     PayPage payPage;
 
     @AfterAll
@@ -23,9 +20,10 @@ public class CreditTest {
 
     @BeforeEach
     void setUp() {
-        open("http://localhost:8080", DashboardPage.class);
+        String url = System.getProperty("app.url");
+        open(url, DashboardPage.class);
         var dashboardPage = new DashboardPage();
-        payPage = dashboardPage.clickCredit();
+        payPage = dashboardPage.clickPay();
     }
 
     @Test
@@ -35,7 +33,7 @@ public class CreditTest {
         payPage.payErrorNotificationHidden();
         payPage.payNotification("Успешно\n" +
                 "Операция одобрена Банком.");
-        var payStatus = SQLHelper.getCreditStatusEntity();
+        var payStatus = SQLHelper.getCardStatusEntity();
         assertEquals("APPROVED", payStatus.getStatus());
     }
 
@@ -46,7 +44,7 @@ public class CreditTest {
         payPage.payNotificationHidden();
         payPage.payErrorNotification("Ошибка\n" +
                 "Ошибка! Банк отказал в проведении операции.");
-        var payStatus = SQLHelper.getCreditStatusEntity();
+        var payStatus = SQLHelper.getCardStatusEntity();
         assertEquals("DECLINED", payStatus.getStatus());
     }
 
@@ -145,5 +143,3 @@ public class CreditTest {
         payPage.checkCVC("Неверный формат");
     }
 }
-
-
